@@ -13,8 +13,10 @@ class Bot(BotBase):
         self.PREFIX = PREFIX
         self.ready = False
         self.guild = None
+        #Super class Bot base
         super().__init__(command_prefix=PREFIX, OWNER_ID=OWNER_IDS)
 
+    # Run Bot
     def run(self, version):
         self.VERSION = version
 
@@ -24,12 +26,15 @@ class Bot(BotBase):
         print("Running Gift Bot...")
         super().run(self.TOKEN, reconnect=True)
 
+    #On Connection
     async def on_connect(self):
         print("Ara Ara!")
 
+    #On disconnection
     async def on_disconnect(self):
         print("Ara Ara Sionara!")
 
+    #On Error
     async def on_error(self, err, *args, **kwargs):
         if err == 'on_command_error':
             await args[0].send("Somthing went wrong.")
@@ -37,6 +42,7 @@ class Bot(BotBase):
         await channel.send("An error Occurrred")
         raise 
 
+    #On Bot Ready
     async def on_ready(self):
         if not self.ready:
             self.guild = self.get_guild(710051662563115049)
@@ -50,4 +56,5 @@ class Bot(BotBase):
             print("Gift Bot Reconnected")
 
 
+#Initialize Bot
 bot = Bot()
