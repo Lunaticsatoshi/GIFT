@@ -1,0 +1,6 @@
+env/
+lib/bot/token
+
+
+*.db
+*.db-journal
