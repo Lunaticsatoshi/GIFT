@@ -2,7 +2,7 @@ from discord.ext.commands import Bot as BotBase
 from discord.ext.commands import Context
 from discord.ext.commands import CommandNotFound
 from discord import Embed, File
-from apscheduler.schedulers.asyncio import AsyncIOScheduler
+# from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from glob import glob
 from datetime import datetime 
 from asyncio import sleep
@@ -28,7 +28,7 @@ class Bot(BotBase):
         self.ready = False
         self.command_ready = Ready()
         self.guild = None
-        self.scheduler = AsyncIOScheduler()
+        # self.scheduler = AsyncIOScheduler()
 
         super().__init__(command_prefix=PREFIX, OWNER_ID=OWNER_IDS)
 
@@ -83,7 +83,7 @@ class Bot(BotBase):
         if not self.ready:
             self.guild = self.get_guild(710051662563115049)
             self.stdout = self.get_channel(710051662563115052)
-            self.scheduler.start()
+            # self.scheduler.start()
             while not self.command_ready.all_ready():
                 print("waiting......")
                 await sleep(0.5)
