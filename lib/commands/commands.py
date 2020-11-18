@@ -11,7 +11,7 @@ class Command(Cog):
     @command(name="hello", aliases=["hola", "h"], hidden=True)
     async def say_hello(self, ctx):
         await ctx.send(f"{choice(('Konnichiva', 'Ara Ara', 'Okaeri', 'Yahallo'))} {ctx.author.mention}!")
-        pass
+        
 
     # @command(name="roll", aliases=["Roll", "dice", "Dice"])
     # async def roll_dice(self, ctx, die_str: str):
