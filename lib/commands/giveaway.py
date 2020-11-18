@@ -15,6 +15,7 @@ class Giveaway(Cog):
     @command(name="giftcr", aliases=["giveaway", "gcreate", "gcr"])
     @has_permissions(manage_guild=True)
     async def create_giveaway(self, ctx):
+        #Ask Questions
         embed = Embed(title="Giveaway Time!!✨",
                       description="Time for a new Giveaway. Answer the following questions in 25 seconds each for the Giveaway",
                       color=ctx.author.color)
@@ -23,11 +24,12 @@ class Giveaway(Cog):
                    "For How long should the Giveaway be hosted ? type number followed (s|m|h|d)",
                    "What is the Prize?"]
         answers = []
+        #Check Author
         def check(m):
             return m.author == ctx.author and m.channel == ctx.channel
         
         for i, question in enumerate(questions):
-            embed = Embed(title=f"Question{i}",
+            embed = Embed(title=f"Question {i}",
                           description=question)
             await ctx.send(embed=embed)
             try:
@@ -36,6 +38,7 @@ class Giveaway(Cog):
                 await ctx.send("You didn't answer the questions in Time")
                 return
             answers.append(message.content)
+        #Check if Channel Id is valid
         try:
             # print(int(answers[0][2:-1]))
             channel_id = int(answers[0][2:-1])
@@ -45,6 +48,7 @@ class Giveaway(Cog):
 
         channel = self.bot.get_channel(channel_id)
         time = convert(answers[1])
+        #Check if Time is valid
         if time == -1:
             await ctx.send("The Time format was wrong")
             return

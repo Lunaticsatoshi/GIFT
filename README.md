@@ -27,9 +27,9 @@ Suggestions, requests and bug reports are always welcomed. If you have any don't
     * [x] Send First Message
 
  - Add Commands
-    * [ ] Giveaway Start Command
-    * [ ] Giveaway  Create Commands
-    * [ ] Giveaway Setup Commands
+    * [x] Giveaway Start Command
+    * [x] Giveaway Create Commands
+    * [x] Giveaway Setup Commands
 
  - Deploy
     * [ ] Deploy To server
