@@ -1,6 +1,6 @@
 env/
 lib/bot/token
-
+__pycache__/
 
 
 *.db
