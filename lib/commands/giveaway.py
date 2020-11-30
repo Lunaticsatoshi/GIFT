@@ -66,6 +66,7 @@ class Giveaway(Cog):
         embed.set_footer(text=f"Giveway ends in {answers[1]} from now")
         newMsg = await channel.send(embed=embed)
         await newMsg.add_reaction("🎉")
+        #Check if Giveaway Cancelled
         self.cancelled = False
         await sleep(time)
         if not self.cancelled:
@@ -73,6 +74,7 @@ class Giveaway(Cog):
 
             users = await myMsg.reactions[0].users().flatten()
             users.pop(users.index(self.bot.user))
+            #Check if User list is not empty
             if len(users) <= 0:
                 # users.append(self.bot.user)
                 emptyEmbed = Embed(title="Giveaway Time !!",
@@ -117,7 +119,7 @@ class Giveaway(Cog):
             winner = choice(users)
             winnerEmbed = Embed(title="Giveaway Time !!",
                     description=f"Win a Prize today")
-            winnerEmbed.add_field(name="Hosted By:", value=ctx.author.mention)
+            # winnerEmbed.add_field(name="Hosted By:", value=ctx.author.mention)
             winnerEmbed.add_field(name=f"Congratulations On Winning Giveaway", value=winner.mention)
             # winnerEmbed.set_footer(text=f"Congratulations {winner.mention} on winning Giveaway!")
             await msg.edit(embed=winnerEmbed)
@@ -133,6 +135,7 @@ class Giveaway(Cog):
         try:
             msg = await channel.fetch_message(id_)
             newEmbed = Embed(title="Giveaway Cancelled", description="The giveaway has been cancelled!!")
+            #Set Giveaway cancelled
             self.cancelled = True
             await msg.edit(embed=newEmbed) 
         except:
