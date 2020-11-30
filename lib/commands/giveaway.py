@@ -1,6 +1,7 @@
 import discord
 from discord.ext.commands import Cog
 from discord.ext.commands import command, has_permissions
+from discord.ext.commands import BadArgument
 from discord import Member
 from discord import Embed, File
 from typing import Optional
@@ -11,6 +12,7 @@ from lib.util.util import convert
 class Giveaway(Cog):
     def __init__(self,bot):
         self.bot = bot
+        self.cancelled = False
 
     @command(name="giftcr", aliases=["giveaway", "gcreate", "gcr"])
     @has_permissions(manage_guild=True)
@@ -64,17 +66,38 @@ class Giveaway(Cog):
         embed.set_footer(text=f"Giveway ends in {answers[1]} from now")
         newMsg = await channel.send(embed=embed)
         await newMsg.add_reaction("🎉")
+        self.cancelled = False
         await sleep(time)
+        if not self.cancelled:
+            myMsg = await channel.fetch_message(newMsg.id)
 
-        myMsg = await channel.fetch_message(newMsg.id)
+            users = await myMsg.reactions[0].users().flatten()
+            users.pop(users.index(self.bot.user))
+            if len(users) <= 0:
+                # users.append(self.bot.user)
+                emptyEmbed = Embed(title="Giveaway Time !!",
+                                   description=f"Win a {prize} today")
+                emptyEmbed.add_field(name="Hosted By:", value=ctx.author.mention)
+                emptyEmbed.set_footer(text="No one won the Giveaway")
+                await myMsg.edit(embed=emptyEmbed)
+                return
+            if len(users) > 0:
+                winner = choice(users)
+                winnerEmbed = Embed(title="Giveaway Time !!",
+                    description=f"Win a {prize} today")
+                # winnerEmbed.add_field(name="Hosted By:", value=ctx.author.mention)
+                winnerEmbed.add_field(name=f"Congratulations On Winning {prize}", value=winner.mention)
+                # winnerEmbed.set_footer(text=f"Congratulations {winner.mention} on winning {prize}")
+                await myMsg.edit(embed=winnerEmbed)
+                return
 
-        users = await myMsg.reactions[0].users().flatten()
-        users.pop(users.index(self.bot.user))
+    @create_giveaway.error
+    async def create_giveaway_error(self, ctx, exc):
+        if isinstance(exc, BadArgument):
+            await ctx.send("You are not allowed to create Giveaways")
+        
 
-        winner = choice(users)
-        await channel.send(f"Congratulations {winner.mention} on winning {prize}")
-
-    @command(name="giftrrl", aliases=["greroll", "giveroll", "grr"])
+    @command(name="giftrrl", aliases=["gifreroll", "gftroll", "grr"])
     @has_permissions(manage_guild=True)
     async def giveaway_reroll(self, ctx, channel : discord.TextChannel, id_: int):
         try:
@@ -82,11 +105,39 @@ class Giveaway(Cog):
         except:
             await ctx.send("The ID was incorrect")
         users = await msg.reactions[0].users().flatten()
-        users.pop(users.index(self.bot.user))
+        if len(users) <= 0:
+                # users.append(self.bot.user)
+            emptyEmbed = Embed(title="Giveaway Time !!",
+                                   description=f"Win a Prize today")
+            emptyEmbed.add_field(name="Hosted By:", value=ctx.author.mention)
+            emptyEmbed.set_footer(text="No one won the Giveaway")
+            await msg.edit(embed=emptyEmbed)
+            return
+        if len(users) > 0:
+            winner = choice(users)
+            winnerEmbed = Embed(title="Giveaway Time !!",
+                    description=f"Win a Prize today")
+            winnerEmbed.add_field(name="Hosted By:", value=ctx.author.mention)
+            winnerEmbed.add_field(name=f"Congratulations On Winning Giveaway", value=winner.mention)
+            # winnerEmbed.set_footer(text=f"Congratulations {winner.mention} on winning Giveaway!")
+            await msg.edit(embed=winnerEmbed)
+            return
 
-        winner = choice(users)
-        await channel.send(f"Congratulations {winner.mention} on winning the Giveaway")
-        pass
+                # users.pop(users.index(self.bot.user))
+                # winner = choice(users)
+                # await channel.send(f"Congratulations {winner.mention} on winning the Giveaway")
+
+    @command(name="giftdel", aliases=["gifdel", "gftdel", "gdl"])
+    @has_permissions(manage_guild=True)
+    async def giveaway_stop(self, ctx, channel : discord.TextChannel, id_: int):
+        try:
+            msg = await channel.fetch_message(id_)
+            newEmbed = Embed(title="Giveaway Cancelled", description="The giveaway has been cancelled!!")
+            self.cancelled = True
+            await msg.edit(embed=newEmbed) 
+        except:
+            embed = Embed(title="Failure!", description="Cannot cancel Giveaway")
+            await ctx.send(emebed=embed)
 
 
     @Cog.listener()
