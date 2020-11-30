@@ -105,7 +105,7 @@ class Giveaway(Cog):
         try:
             msg = await channel.fetch_message(id_)
         except:
-            await ctx.send("The ID was incorrect")
+            await ctx.send("The channel or ID mentioned was incorrect")
         users = await msg.reactions[0].users().flatten()
         if len(users) <= 0:
                 # users.append(self.bot.user)
@@ -118,7 +118,7 @@ class Giveaway(Cog):
         if len(users) > 0:
             winner = choice(users)
             winnerEmbed = Embed(title="Giveaway Time !!",
-                    description=f"Win a Prize today")
+                                description=f"Win a Prize today")
             # winnerEmbed.add_field(name="Hosted By:", value=ctx.author.mention)
             winnerEmbed.add_field(name=f"Congratulations On Winning Giveaway", value=winner.mention)
             # winnerEmbed.set_footer(text=f"Congratulations {winner.mention} on winning Giveaway!")
