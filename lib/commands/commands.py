@@ -27,7 +27,7 @@ class Command(Cog):
         embed.add_field(name="Reroll Giveaway", value="Reroll a giveaway again by using the !gifreroll command. Additionally you can also use commands like !gftroll or !giftrrl. The bot will ask some simple questions to host your giveaway")
         embed.add_field(name="Cancel Giveaway", value="Delete a giveaway by using the !giftdel command. Additionally you can also use commands like !gftdel or !gifdel. The bot will ask some simple questions to host your giveaway")
         await ctx.send(embed=embed)
-        pass
+    
     @Cog.listener()
     async def on_ready(self):
         # await self.bot.stdout.send("Command Cog ready")
