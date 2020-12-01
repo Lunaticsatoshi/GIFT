@@ -118,7 +118,8 @@ class Bot(BotBase):
         if general and general.permissions_for(guild.me).send_messages:
             embed = Embed(title="Gift Bot is Now on your server", description="Oniichan/Oneechan!! You have invited Gift bot into your server to help you with your Giveaways", colour=0x00FFFF, timestamp=datetime.utcnow())
             embed.set_author(name=guild.name)
-            embed.set_thumbnail(url=guild.icon_url)
+            embed.set_thumbnail(url="https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d")
+            # embed.set_image(url="https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d")
             await general.send(embed=embed)
 
     async def on_message(self, message):
