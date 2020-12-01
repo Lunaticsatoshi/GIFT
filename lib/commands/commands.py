@@ -1,9 +1,7 @@
 from discord.ext.commands import Cog
 from discord.ext.commands import command
-from discord import Member
 from discord import Embed, File
-from typing import Optional
-from random import choice, randint
+from random import choice
 
 class Command(Cog):
     def __init__(self,bot):
