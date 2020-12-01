@@ -99,25 +99,26 @@ class Bot(BotBase):
 
     async def on_ready(self):
         if not self.ready:
-            self.guild = self.get_guild(710051662563115049)
-            self.stdout = self.get_channel(710051662563115052)
+            # self.guild = self.get_guild(710051662563115049)
+            # self.stdout = self.get_channel(710051662563115052)
             # self.scheduler.start()
             while not self.command_ready.all_ready():
                 print("waiting......")
                 await sleep(0.5)
             self.ready = True
             print("Gift Bot ready")
-            embed = Embed(title="Gift Bot is Now Online", description="You have Gift bot into your server to help with your Giveaways", colour=0x00FFFF, timestamp=datetime.utcnow())
-            embed.set_author(name="LOLi Lover")
-            await self.stdout.send(embed=embed)
+            # embed = Embed(title="Gift Bot is Now Online", description="You have Gift bot into your server to help with your Giveaways", colour=0x00FFFF, timestamp=datetime.utcnow())
+            # embed.set_author(name="LoLi Lover")
+            # await self.stdout.send(embed=embed)
         else:
             print("Gift Bot reconnected")
 
     async def on_guild_join(self, guild):
         general = find(lambda x: x.name == 'general', guild.text_channels)
         if general and general.permissions_for(guild.me).send_messages:
-            embed = Embed(title="Gift Bot is Now Online", description="You have Gift bot into your server to help with your Giveaways", colour=0x00FFFF, timestamp=datetime.utcnow())
-            embed.set_author(name="LOLi Lover")
+            embed = Embed(title="Gift Bot is Now on your server", description="Oniichan/Oneechan!! You have invited Gift bot into your server to help you with your Giveaways", colour=0x00FFFF, timestamp=datetime.utcnow())
+            embed.set_author(name=guild.name)
+            embed.set_thumbnail(url=guild.icon_url)
             await general.send(embed=embed)
 
     async def on_message(self, message):

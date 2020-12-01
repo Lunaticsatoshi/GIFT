@@ -2,7 +2,7 @@ import discord
 from discord.ext.commands import Cog
 from discord.ext.commands import command, has_permissions, has_role
 from discord import Member
-from discord import Embed
+from discord import Embed,File
 from typing import Optional
 from random import choice
 from asyncio import TimeoutError, sleep
@@ -85,8 +85,10 @@ class Giveaway(Cog):
             if len(users) > 0:
                 winner = choice(users)
                 winnerEmbed = Embed(title="Giveaway Time !!",
-                                    description=f"Win a {prize} today")
+                                    description=f"Win a {prize} today",
+                                    colour=0x00FFFF)
                 winnerEmbed.add_field(name=f"Congratulations On Winning {prize}", value=winner.mention)
+                winnerEmbed.set_image(url="https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d")
                 await myMsg.edit(embed=winnerEmbed)
                 return
 
@@ -115,8 +117,10 @@ class Giveaway(Cog):
         if len(users) > 0:
             winner = choice(users)
             winnerEmbed = Embed(title="Giveaway Time !!",
-                                description=f"Win a Prize today")
+                                description=f"Win a Prize today",
+                                colour=0x00FFFF)
             winnerEmbed.add_field(name=f"Congratulations On Winning Giveaway", value=winner.mention)
+            winnerEmbed.set_image(url="https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d")
             await msg.edit(embed=winnerEmbed)
             return
 
