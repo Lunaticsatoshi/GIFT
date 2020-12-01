@@ -1,7 +1,7 @@
 from discord.ext.commands import Bot as BotBase
 from discord.ext.commands import Context
 from discord.ext.commands import CommandNotFound, BadArgument
-from discord.ext.commands import MissingRequiredArgument, MissingRole
+from discord.ext.commands import MissingRequiredArgument, MissingRole, MissingPermissions
 from discord.errors import Forbidden
 from discord import Embed, File
 # from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -77,11 +77,15 @@ class Bot(BotBase):
     async def on_command_error(self, ctx, exc):
         if any([isinstance(exc, err) for err in IGNORE_EXCEPTIONS]):
             pass
+
         elif isinstance(exc, MissingRequiredArgument):
             await ctx.send("One or More argument required by Gift Bot!!")
 
+        elif isinstance(exc, MissingPermissions):
+            await ctx.send("You are not allowed to create Giveaways")
+
         elif isinstance(exc, MissingRole):
-            await ctx.send("You do not have the necessary role")
+            await ctx.send("You do not have the necessary role to create Giveaways")
         
         elif hasattr(exc, "original"):
             if isinstance(exc.original, Forbidden):
