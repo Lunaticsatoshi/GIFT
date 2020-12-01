@@ -60,7 +60,8 @@ class Giveaway(Cog):
 
         await ctx.send(f"Your giveaway will be hosted in {channel.mention} and will last for {answers[1]}")
         embed = Embed(title="Giveaway Time !!",
-                    description=f"Win a {prize} today")
+                    description=f"Win a {prize} today",
+                    colour=0x00FFFF)
         embed.add_field(name="Hosted By:", value=ctx.author.mention)
         embed.set_footer(text=f"Giveway ends in {answers[1]} from now")
         newMsg = await channel.send(embed=embed)

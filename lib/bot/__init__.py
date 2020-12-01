@@ -1,3 +1,4 @@
+from discord.utils import find
 from discord.ext.commands import Bot as BotBase
 from discord.ext.commands import Context
 from discord.ext.commands import CommandNotFound, BadArgument
@@ -106,9 +107,18 @@ class Bot(BotBase):
                 await sleep(0.5)
             self.ready = True
             print("Gift Bot ready")
-            await self.stdout.send("Now Online")
+            embed = Embed(title="Gift Bot is Now Online", description="You have Gift bot into your server to help with your Giveaways", colour=0x00FFFF, timestamp=datetime.utcnow())
+            embed.set_author(name="LOLi Lover")
+            await self.stdout.send(embed=embed)
         else:
             print("Gift Bot reconnected")
+
+    async def on_guild_join(self, guild):
+        general = find(lambda x: x.name == 'general', guild.text_channels)
+        if general and general.permissions_for(guild.me).send_messages:
+            embed = Embed(title="Gift Bot is Now Online", description="You have Gift bot into your server to help with your Giveaways", colour=0x00FFFF, timestamp=datetime.utcnow())
+            embed.set_author(name="LOLi Lover")
+            await general.send(embed=embed)
 
     async def on_message(self, message):
         if not message.author.bot:
