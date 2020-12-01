@@ -1,6 +1,8 @@
 from discord.ext.commands import Bot as BotBase
 from discord.ext.commands import Context
-from discord.ext.commands import CommandNotFound
+from discord.ext.commands import CommandNotFound, BadArgument
+from discord.ext.commands import MissingRequiredArgument, MissingRole
+from discord.errors import Forbidden
 from discord import Embed, File
 # from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from glob import glob
@@ -10,7 +12,7 @@ from asyncio import sleep
 PREFIX = "!"
 OWNER_IDS = [572353145963806721]
 COMMANDS = [path.split("\\")[-1][:-3] for path in glob("./lib/commands/*.py")]
-
+IGNORE_EXCEPTIONS = [CommandNotFound, BadArgument]
 class Ready(object):
     def __init__(self):
         for command in COMMANDS:
@@ -63,18 +65,29 @@ class Bot(BotBase):
     async def on_disconnect(self):
         print("Ara Ara Sionara!")
 
-    async def on_error(self, err, *args, **kwargs):
+    async def on_error(self, err, ctx, *args, **kwargs):
         if err == 'on_command_error':
-            await args[0].send("Somthing went wrong.")
-        channel = self.get_channel(710051662563115052)
-        await channel.send("An error Occurrred")
+            # await args[0].send("Somthing went wrong.")
+            await ctx.send("An error Occurrred")
+        # channel = self.get_channel(710051662563115052)
+        # await channel.send("An error Occurrred")
+        # await ctx.send("An error Occurrred")
         raise 
 
     async def on_command_error(self, ctx, exc):
-        if isinstance(exc, CommandNotFound):
+        if any([isinstance(exc, err) for err in IGNORE_EXCEPTIONS]):
             pass
-        # elif hasattr(exc, "original"):
-        #     raise exc.original
+        elif isinstance(exc, MissingRequiredArgument):
+            await ctx.send("One or More argument required by Gift Bot!!")
+
+        elif isinstance(exc, MissingRole):
+            await ctx.send("You do not have the necessary role")
+        
+        elif hasattr(exc, "original"):
+            if isinstance(exc.original, Forbidden):
+                await ctx.send("Gift Bot doesn't have permission to do that!!")
+            else:
+                raise exc.original
         else:
             raise exc
 
