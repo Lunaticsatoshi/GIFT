@@ -12,7 +12,8 @@ GIFT is made is Python and python discord library Discord.py
 
 ## Invite
 Invite Link for Gift Bot will be added soon.
-
+<a href="https://discord.com/api/oauth2/authorize?client_id=723152534369468426&permissions=0&scope=bot">Invite Bot</a>
+  
 ## How To Use Gift
 - !gifth: Provides you with a list of all the bot's available commands
 - !giveaway: Setup your Giveaway.
@@ -38,7 +39,7 @@ Suggestions, requests and bug reports are always welcomed. If you have any don't
     * [x] Cancel Giveaway Command
 
  - Deploy
-    * [ ] Deploy To server
+    * [x] Deploy To server
 
  More To be Added soon....
 
