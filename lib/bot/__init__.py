@@ -12,7 +12,7 @@ from asyncio import sleep
 
 PREFIX = "!"
 OWNER_IDS = [572353145963806721]
-COMMANDS = [path.split("\\")[-1][:-3] for path in glob("./lib/commands/*.py")]
+COMMANDS = [path.split("/")[-1][:-3] for path in glob("./lib/commands/*.py")]
 IGNORE_EXCEPTIONS = [CommandNotFound, BadArgument]
 class Ready(object):
     def __init__(self):
