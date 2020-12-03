@@ -2,22 +2,27 @@
 A Discord Giveaway BOT to help Server owners host give aways on their discord servers seamlessly and with ease and without any hassles or problems.
 
 ## About
+[![Stars](https://img.shields.io/github/stars/Lunaticsatoshi/GIFT.svg)](https://github.com/Lunaticsatoshi/GIFT/stargazers)<br>
 GIFT helps you run giveaways on your server to interact and have fun with your server members to keep your server ever active.
 
 GIFT is made is Python and python discord library Discord.py
+
+GIFT bot is your personal Giveaway hosting Bot. You can even make her call you Oniichan :3
+![Loli](https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d)
+
 
 ## Technologies
 - Python
 - Discord.py
 
 ## Invite
-Invite Link for Gift Bot will be added soon.
-<a href="https://discord.com/api/oauth2/authorize?client_id=723152534369468426&permissions=0&scope=bot">Invite Bot</a>
+If you'd like to add GiveawayBot to your server, use the following link:
+<a href="https://discord.com/api/oauth2/authorize?client_id=777871621716574250&permissions=0&scope=bot">Invite Bot</a>
   
 ## How To Use Gift
 - !gifth: Provides you with a list of all the bot's available commands
 - !giveaway: Setup your Giveaway.
-- !fifreroll: Reroll The Giveaway to select a new winner use !gifreroll #channel-name Message Id of the message
+- !gifreroll: Reroll The Giveaway to select a new winner use !gifreroll #channel-name Message Id of the message
 - !giftdel: Cancel the Giveaway by specifying the giveaway channel name and the message id: use !giftdel #channel_name Id of the giveaway message
 ## Suggestions and Bug Reports
 Suggestions, requests and bug reports are always welcomed. If you have any don't forget to leave them in the issues section.
