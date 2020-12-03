@@ -8,7 +8,7 @@ GIFT helps you run giveaways on your server to interact and have fun with your s
 GIFT is made is Python and python discord library Discord.py
 
 GIFT bot is your personal Giveaway hosting Bot. You can even make her call you Oniichan :3
-![Loli](https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d$h=30&w=30)
+![Loli](https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d&h=30&w=30)
 
 
 ## Technologies
