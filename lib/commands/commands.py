@@ -11,6 +11,11 @@ class Command(Cog):
     async def say_hello(self, ctx):
         await ctx.send(f"{choice(('Konnichiva', 'Ara Ara', 'Okaeri', 'Yahallo'))} {ctx.author.mention}!")
 
+    @command(name="callme", aliases=["call", "c"], hidden=True)
+    async def call_me(self, ctx, *, message):
+        await ctx.message.delete()
+        await ctx.send(f"{ctx.author.mention} {message}")
+
     # @command(name="echo", aliases=["say", "shout"])
     # async def echo_message(self, ctx, *, message):
     #     await ctx.message.delete()
