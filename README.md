@@ -9,7 +9,7 @@ GIFT is made is Python and python discord library Discord.py
 
 GIFT bot is your personal Giveaway hosting Bot. You can even make her call you Oniichan :3<br>
 
-<img src="https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d" height="500" width="300">
+<img align="center" src="https://firebasestorage.googleapis.com/v0/b/sociality-a732c.appspot.com/o/Loli.png?alt=media&token=ab5c8924-9a14-40a9-97b8-dba68b69195d" height="500" width="300">
 
 
 ## Technologies
