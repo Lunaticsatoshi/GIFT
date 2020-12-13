@@ -18,7 +18,7 @@ GIFT bot is your personal Giveaway hosting Bot. You can even make her call you O
 
 ## Invite
 If you'd like to add GiveawayBot to your server, use the following link:
-<a href="https://discord.com/api/oauth2/authorize?client_id=777871621716574250&permissions=0&scope=bot">Invite Bot</a>
+[![](https://img.shields.io/badge/Invite-Gift%20Bot-blue)](https://discord.com/api/oauth2/authorize?client_id=777871621716574250&permissions=0&scope=bot)
   
 ## How To Use Gift
 - !gifth: Provides you with a list of all the bot's available commands
